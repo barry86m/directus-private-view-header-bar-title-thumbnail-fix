@@ -22,7 +22,7 @@ import { getAssetUrl } from '@/utils/get-asset-url';
 import { notify } from '@/utils/notify';
 import { unexpectedError } from '@/utils/unexpected-error';
 import { PrivateView, PrivateViewHeaderBarActionButton } from '@/views/private';
-import CollabIndicatorHeader from '@/views/private/components/collab/CollabIndicatorHeader.vue';
+import CollabAvatars from '@/views/private/components/CollabAvatars.vue';
 import CommentsSidebarDetail from '@/views/private/components/comments-sidebar-detail.vue';
 import ComparisonModal from '@/views/private/components/comparison/comparison-modal.vue';
 import FilePreviewReplace from '@/views/private/components/file-preview-replace.vue';
@@ -71,8 +71,6 @@ const {
 	update: updateCollab,
 	clearCollidingChanges,
 	discard: discardCollab,
-	focused,
-	connectionId,
 } = useCollab(ref('directus_files'), primaryKey, ref(null), item, edits, getItem);
 
 const {
@@ -259,12 +257,7 @@ function revert(values: Record<string, any>) {
 		</template>
 
 		<template #actions>
-			<CollabIndicatorHeader
-				:model-value="collabUsers"
-				:connected="connected"
-				:focuses="focused"
-				:current-connection="connectionId"
-			/>
+			<CollabAvatars :model-value="collabUsers" :connected="connected" />
 
 			<VDialog v-model="confirmDelete" @esc="confirmDelete = false" @apply="deleteAndQuit">
 				<template #activator="{ on }">

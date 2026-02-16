@@ -113,8 +113,6 @@ export function useCollab(
 	connected: Ref<boolean | undefined>;
 	collabCollision: Ref<{ from: Item; to: Item } | undefined>;
 	discard: () => void;
-	focused: Ref<Record<ClientID, string>>;
-	connectionId: Ref<ClientID | null>;
 } {
 	const serverStore = useServerStore();
 	const settingsStore = useSettingsStore();
@@ -562,15 +560,5 @@ export function useCollab(
 		});
 	}
 
-	return {
-		update,
-		users,
-		collabContext,
-		connected,
-		collabCollision,
-		clearCollidingChanges,
-		discard,
-		focused,
-		connectionId,
-	};
+	return { update, users, collabContext, connected, collabCollision, clearCollidingChanges, discard };
 }
