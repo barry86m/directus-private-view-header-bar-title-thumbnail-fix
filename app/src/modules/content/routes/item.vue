@@ -44,7 +44,7 @@ import { getCollectionRoute, getItemRoute } from '@/utils/get-route';
 import { renderStringTemplate } from '@/utils/render-string-template';
 import { translateShortcut } from '@/utils/translate-shortcut';
 import { PrivateView } from '@/views/private';
-import CollabIndicatorHeader from '@/views/private/components/collab/CollabIndicatorHeader.vue';
+import CollabAvatars from '@/views/private/components/CollabAvatars.vue';
 import CommentsSidebarDetail from '@/views/private/components/comments-sidebar-detail.vue';
 import ComparisonModal from '@/views/private/components/comparison/comparison-modal.vue';
 import FlowDialogs from '@/views/private/components/flow-dialogs.vue';
@@ -139,8 +139,6 @@ const {
 	collabCollision,
 	update: updateCollab,
 	discard: discardCollab,
-	focused,
-	connectionId,
 } = useCollab(collection, primaryKey, currentVersion, item, edits, getItem);
 
 const validationErrors = computed(() => {
@@ -700,12 +698,7 @@ function useItemNavigation() {
 		</template>
 
 		<template #actions>
-			<CollabIndicatorHeader
-				:model-value="collabUsers"
-				:connected="connected"
-				:focuses="focused"
-				:current-connection="connectionId"
-			/>
+			<CollabAvatars :model-value="collabUsers" :connected="connected" />
 
 			<VButton
 				v-if="previewUrl"

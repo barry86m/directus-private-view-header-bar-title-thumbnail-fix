@@ -51,8 +51,6 @@ interface Props {
 	keepBehind?: boolean;
 	/** Do not focus activator when deactivating focus trap */
 	noFocusReturn?: boolean;
-	/** Invert the menu colors */
-	invert?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -65,7 +63,6 @@ const props = withDefaults(defineProps<Props>(), {
 	delay: 0,
 	offsetY: 8,
 	offsetX: 0,
-	invert: false,
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -486,7 +483,7 @@ function usePopper(
 						events: ['click'],
 					}"
 					class="v-menu-popper"
-					:class="{ active: isActive, attached, 'keep-behind': keepBehind, invert }"
+					:class="{ active: isActive, attached, 'keep-behind': keepBehind }"
 					:data-placement="popperPlacement"
 					:style="styles"
 				>
@@ -540,11 +537,6 @@ function usePopper(
 
 	&.keep-behind {
 		z-index: 490;
-	}
-
-	&.invert {
-		--theme--popover--menu--background: var(--background-inverted);
-		--theme--popover--menu--foreground: var(--foreground-inverted);
 	}
 }
 
@@ -660,7 +652,6 @@ function usePopper(
 	max-block-size: v-bind(maxHeight);
 	padding: 0 4px;
 	overflow: hidden auto;
-	color: var(--theme--popover--menu--foreground);
 	background-color: var(--theme--popover--menu--background);
 	border: none;
 	border-radius: var(--theme--popover--menu--border-radius);
