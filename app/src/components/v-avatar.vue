@@ -44,7 +44,6 @@ const sizeClass = useSizeClass(props);
 
 	Available Variables:
 
-	--v-avatar-border-width [2px]
 	--v-avatar-border-color [var(--theme--border-color)]
 	--v-avatar-color  [var(--theme--background-normal)]
 	--v-avatar-size   [48px]
@@ -70,7 +69,7 @@ const sizeClass = useSizeClass(props);
 }
 
 .border {
-	border: var(--v-avatar-border-width, 2px) solid var(--v-avatar-border-color, var(--theme--border-color));
+	border: var(--theme--border-width) solid var(--v-avatar-border-color, var(--theme--border-color));
 }
 
 .x-small {
